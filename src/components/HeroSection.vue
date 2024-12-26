@@ -10,7 +10,7 @@
           <button class="mt-4 w-full md:w-48 bg-secondary p-4 font-bold border border-b-4 border-black rounded-3xl hover:text-primary">Shop Now</button>
         </div>
         <div class="lg:h-full w-[90%] md:w-full mt-20 md:mt-0">
-          <carousel :autoplay="4000" :wrap-around="true">
+          <carousel>
             <slide v-for="(image,index) in images" :key="index">
               <img :src="image" alt="Jewelry " class="glowing-border carousel__image w-[800px] h-[450px] rounded-3xl">
             </slide>
@@ -22,7 +22,18 @@
       </div>
     </div>
 <!--    Marquee section-->
-    <div class="outrunning-about mt-10 bg-secondary2"></div>
+    <div class="outer-running-about mt-10 bg-secondary2">
+      <div class="running-text max-w-full">
+        <vue3Marquee>
+          <span class="head-7 font-playfair" v-for="(word, index) in news" :key="index">
+            {{ word }}
+            <span class="svg w-embed inline-block align-middle">
+              <img src="/sparkle.svg" alt="Sparkle">
+            </span>
+          </span>
+        </vue3Marquee>
+      </div>
+    </div>
 
   </section>
 </template>
@@ -33,6 +44,13 @@
   import 'vue3-carousel/dist/carousel.css';
 
   const images = ref(['pic1.jpg','pic2.jpg','pic3.jpg','pic4.jpg']);
+  const news = ref([
+    "Stainless Steel Accessories",
+    "925 Sliver Jewerly",
+    "Gold Plated Bracelets",
+    "Elegance at your fingertips !",
+    "Sparkle and Style",
+  ]);
 </script>
 
 <style>
@@ -68,5 +86,30 @@
     border: 5px solid white;
     border-radius: 50%;
     background-color: white;
+  }
+
+  .outer-running-about {
+    z-index: 1;
+    width: 100.5%;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    display: flex;
+    position: relative;
+    left: -0.5rem;
+    transform: translate(0, -20%) rotate(-2deg);
+  }
+  .scroll-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll-left 15s linear infinite;
+    font-size: 1rem;
+    color: white;
+  }
+  .head-7 {
+    letter-spacing: -1px;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 120%;
+    color: white;
   }
 </style>
