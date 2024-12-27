@@ -54,7 +54,7 @@
                 height="22"
                 class="rtl:sm:ml-1 sm:mr-1.5 sm:w-[22px] w-[18px]"
             />
-            <span class="absolute top-[-6px] right-[-6px] bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">0</span>
+            <span class="absolute top-[-6px] right-[-6px] bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">{{ cart.length }}</span>
           </a>
         </li>
       </ul>
@@ -63,8 +63,11 @@
 </template>
 
 <script setup>
-  import {ref} from 'vue'
+  import {ref, computed} from 'vue';
+  import {useStore} from "vuex";
 
+  const store = useStore();
+  const cart = computed(()=> store.getters['getCart'])
   const isMenuOpen = ref(false);
   const Menus = ref([
     {name: "Home", href: '/home'},
